@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加入我们 - 鄱阳鹤影</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <div id="header">
+        <div class="container">
+            <div id="logo"><span id="logo-icon">🪶</span>鄱阳鹤影</div>
+            <div id="main-nav">
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="species.html">候鸟种类</a></li>
+                    <li><a href="protection.html">保护行动</a></li>
+                    <li><a href="action.html">志愿活动</a></li>
+                    <li><a href="multimedia.html">多媒体</a></li>
+                    <li><a href="contact.html">加入我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="../index.html">首页</a><span>&gt;</span><strong>加入我们</strong>
+        </div>
+    </div>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>加入候鸟保护志愿者</h1>
+            <p>填写信息，加入保护候鸟的行动</p>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="container">
+            <div class="form-container">
+                <form id="volunteerForm" action="contact-result.html" method="GET" onsubmit="return validateForm()">
+                    
+                    <!-- 姓名 -->
+                    <div class="form-group" id="nameGroup">
+                        <label for="name"><span class="required">*</span> 姓名：</label>
+                        <input type="text" id="name" name="name" placeholder="请输入您的真实姓名（2-10个中文字符）" onblur="validateName()">
+                        <span class="error-message" id="nameError">请输入2-10个中文字符的真实姓名</span>
+                    </div>
+
+                    <!-- 电子邮箱 -->
+                    <div class="form-group" id="emailGroup">
+                        <label for="email"><span class="required">*</span> 电子邮箱：</label>
+                        <input type="text" id="email" name="email" placeholder="请输入您的电子邮箱" onblur="validateEmail()">
+                        <span class="error-message" id="emailError">请输入有效的电子邮箱地址</span>
+                    </div>
+
+                    <!-- 手机号 -->
+                    <div class="form-group" id="phoneGroup">
+                        <label for="phone"><span class="required">*</span> 手机号码：</label>
+                        <input type="text" id="phone" name="phone" placeholder="请输入您的手机号码" onblur="validatePhone()">
+                        <span class="error-message" id="phoneError">请输入有效的中国大陆手机号码</span>
+                    </div>
+
+                    <!-- 所在城市 -->
+                    <div class="form-group" id="cityGroup">
+                        <label for="city"><span class="required">*</span> 所在城市：</label>
+                        <input type="text" id="city" name="city" placeholder="请输入您所在的城市" onblur="validateCity()">
+                        <span class="error-message" id="cityError">请输入2-20个字符的城市名称</span>
+                    </div>
+
+                    <!-- 志愿者方向 -->
+                    <div class="form-group">
+                        <label for="direction"><span class="required">*</span> 志愿者方向：</label>
+                        <select id="direction" name="direction">
+                            <option value="">请选择感兴趣的方向</option>
+                            <option value="候鸟监测">候鸟种群监测</option>
+                            <option value="湿地巡护">湿地巡护</option>
+                            <option value="伤病救助">伤病候鸟救助</option>
+                            <option value="科普宣传">科普宣传</option>
+                            <option value="其他">其他</option>
+                        </select>
+                        <span class="error-message" id="directionError">请选择志愿者方向</span>
+                    </div>
+
+                    <!-- 自我介绍 -->
+                    <div class="form-group" id="introGroup">
+                        <label for="intro"><span class="required">*</span> 自我介绍（不少于15字）：</label>
+                        <textarea id="intro" name="intro" placeholder="请简单介绍自己，包括相关经验和对候鸟保护的热情（不少于15个字符）" onblur="validateIntro()"></textarea>
+                        <span class="error-message" id="introError">自我介绍不能少于15个字符</span>
+                    </div>
+
+                    <!-- 验证码 -->
+                    <div class="form-group" id="captchaGroup">
+                        <label for="captcha"><span class="required">*</span> 验证码：</label>
+                        <p style="margin-bottom:8px; font-weight:bold; color:#2E86AB;" id="captchaQuestion"></p>
+                        <input type="text" id="captcha" name="captcha" placeholder="请输入计算结果" onblur="validateCaptcha()">
+                        <span class="error-message" id="captchaError">验证码计算错误</span>
+                    </div>
+
+                    <!-- 提交按钮 -->
+                    <button type="submit" class="btn-submit">提 交 报 名</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="container">
+            <p>&copy; 2025 鄱阳鹤影 - 鄱阳湖候鸟保护公益站</p>
+            <p class="copyright">学号：2025XXXXXX | 姓名：XXX | 江西师范大学人工智能学院</p>
+        </div>
+    </div>
+
+    <a href="#" class="back-to-top" title="返回顶部">&#8593;</a>
+
+    <!-- JavaScript 表单验证 -->
+    <script>
+        // 生成随机验证码
+        var captchaAnswer;
+        function generateCaptcha() {
+            var num1 = Math.floor(Math.random() * 15) + 1;
+            var num2 = Math.floor(Math.random() * 15) + 1;
+            var operators = ['+', '-', '×'];
+            var op = operators[Math.floor(Math.random() * 3)];
+            
+            var question;
+            switch(op) {
+                case '+':
+                    captchaAnswer = num1 + num2;
+                    question = num1 + ' + ' + num2 + ' = ?';
+                    break;
+                case '-':
+                    if (num1 < num2) { var temp = num1; num1 = num2; num2 = temp; }
+                    captchaAnswer = num1 - num2;
+                    question = num1 + ' - ' + num2 + ' = ?';
+                    break;
+                case '×':
+                    captchaAnswer = num1 * num2;
+                    question = num1 + ' × ' + num2 + ' = ?';
+                    break;
+            }
+            document.getElementById('captchaQuestion').textContent = '请计算：' + question;
+        }
+        
+        window.onload = function() {
+            generateCaptcha();
+        };
+
+        function clearError(groupId) {
+            var group = document.getElementById(groupId);
+            group.classList.remove('error');
+            group.classList.remove('success');
+        }
+
+        function showError(groupId) {
+            var group = document.getElementById(groupId);
+            group.classList.add('error');
+            group.classList.remove('success');
+        }
+
+        function showSuccess(groupId) {
+            var group = document.getElementById(groupId);
+            group.classList.remove('error');
+            group.classList.add('success');
+        }
+
+        // 1. 姓名校验：2-10个中文字符
+        function validateName() {
+            var name = document.getElementById('name').value.trim();
+            var regex = /^[\u4e00-\u9fa5]{2,10}$/;
+            if (regex.test(name)) {
+                showSuccess('nameGroup');
+                return true;
+            } else {
+                showError('nameGroup');
+                return false;
+            }
+        }
+
+        // 2. 邮箱校验
+        function validateEmail() {
+            var email = document.getElementById('email').value.trim();
+            var regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (regex.test(email)) {
+                showSuccess('emailGroup');
+                return true;
+            } else {
+                showError('emailGroup');
+                return false;
+            }
+        }
+
+        // 3. 手机号校验：中国大陆手机号
+        function validatePhone() {
+            var phone = document.getElementById('phone').value.trim();
+            var regex = /^1[3-9]\d{9}$/;
+            if (regex.test(phone)) {
+                showSuccess('phoneGroup');
+                return true;
+            } else {
+                showError('phoneGroup');
+                return false;
+            }
+        }
+
+        // 4. 城市校验
+        function validateCity() {
+            var city = document.getElementById('city').value.trim();
+            if (city.length >= 2 && city.length <= 20) {
+                showSuccess('cityGroup');
+                return true;
+            } else {
+                showError('cityGroup');
+                return false;
+            }
+        }
+
+        // 5. 志愿者方向校验
+        function validateDirection() {
+            var direction = document.getElementById('direction').value;
+            if (direction !== '') {
+                document.getElementById('directionError').style.display = 'none';
+                return true;
+            } else {
+                document.getElementById('directionError').style.display = 'block';
+                return false;
+            }
+        }
+
+        // 6. 自我介绍校验：不少于15个字符
+        function validateIntro() {
+            var intro = document.getElementById('intro').value.trim();
+            if (intro.length >= 15) {
+                showSuccess('introGroup');
+                return true;
+            } else {
+                showError('introGroup');
+                return false;
+            }
+        }
+
+        // 7. 验证码校验
+        function validateCaptcha() {
+            var captchaInput = document.getElementById('captcha').value.trim();
+            if (parseInt(captchaInput) === captchaAnswer) {
+                showSuccess('captchaGroup');
+                return true;
+            } else {
+                showError('captchaGroup');
+                return false;
+            }
+        }
+
+        // 整体表单验证
+        function validateForm() {
+            var isNameValid = validateName();
+            var isEmailValid = validateEmail();
+            var isPhoneValid = validatePhone();
+            var isCityValid = validateCity();
+            var isDirectionValid = validateDirection();
+            var isIntroValid = validateIntro();
+            var isCaptchaValid = validateCaptcha();
+
+            if (!isNameValid || !isEmailValid || !isPhoneValid || !isCityValid || !isDirectionValid || !isIntroValid || !isCaptchaValid) {
+                alert('请检查并修正表单中的错误信息后再提交。');
+                generateCaptcha();
+                document.getElementById('captcha').value = '';
+                clearError('captchaGroup');
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+</body>
+</html>

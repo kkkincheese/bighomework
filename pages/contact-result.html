@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>报名成功 - 鄱阳鹤影</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <div id="header">
+        <div class="container">
+            <div id="logo"><span id="logo-icon">🪶</span>鄱阳鹤影</div>
+            <div id="main-nav">
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="species.html">候鸟种类</a></li>
+                    <li><a href="protection.html">保护行动</a></li>
+                    <li><a href="multimedia.html">多媒体</a></li>
+                    <li><a href="contact.html">加入我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>报名结果</h1>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="container">
+            <div class="result-card">
+                <div class="success-icon">🪶</div>
+                <h2>志愿者报名成功！</h2>
+                <p style="color:#666; margin-bottom:20px;">感谢您加入鄱阳湖候鸟保护志愿者队伍！我们将尽快与您联系。</p>
+                
+                <div class="result-info" id="resultInfo">
+                    <p><strong>姓名：</strong><span id="displayName">-</span></p>
+                    <p><strong>电子邮箱：</strong><span id="displayEmail">-</span></p>
+                    <p><strong>手机号码：</strong><span id="displayPhone">-</span></p>
+                    <p><strong>所在城市：</strong><span id="displayCity">-</span></p>
+                    <p><strong>志愿者方向：</strong><span id="displayDirection">-</span></p>
+                    <p><strong>自我介绍：</strong><span id="displayIntro">-</span></p>
+                </div>
+
+                <a href="contact.html" class="btn" style="margin-right:10px;">返回修改</a>
+                <a href="../index.html" class="btn">返回首页</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="container">
+            <p>&copy; 2025 鄱阳鹤影 - 鄱阳湖候鸟保护公益站</p>
+            <p class="copyright">学号：2025XXXXXX | 姓名：XXX | 江西师范大学人工智能学院</p>
+        </div>
+    </div>
+
+    <script>
+        function getQueryParam(param) {
+            var urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param) || '-';
+        }
+
+        document.getElementById('displayName').textContent = getQueryParam('name');
+        document.getElementById('displayEmail').textContent = getQueryParam('email');
+        document.getElementById('displayPhone').textContent = getQueryParam('phone');
+        document.getElementById('displayCity').textContent = getQueryParam('city');
+        document.getElementById('displayDirection').textContent = getQueryParam('direction');
+        document.getElementById('displayIntro').textContent = getQueryParam('intro');
+    </script>
+
+    <a href="#" class="back-to-top" title="返回顶部">&#8593;</a>
+
+</body>
+</html>

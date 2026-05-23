@@ -1,0 +1,768 @@
+/* ============ 全局重置与基础样式 ============ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", "SimSun", serif;
+    background-color: #F5F5F5;  /* 候鸟白色背景 */
+    color: #2E3D34;              /* 深墨绿文字 */
+    line-height: 1.8;
+    min-height: 100vh;
+}
+
+/* ============ 容器 ============ */
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ============ 顶部导航栏 ============ */
+#header {
+    background-color: #2E86AB;  /* 湿地蓝 */
+    color: #F5F5F5;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+}
+
+#header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo {
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: #F5F5F5;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#logo-icon {
+    font-size: 30px;
+}
+
+#main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+#main-nav ul li a {
+    color: #F5F5F5;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+#main-nav ul li a:hover {
+    background-color: #D4A76A;  /* 芦苇金 */
+    color: #2E3D34;
+}
+
+/* ============ 首页Hero区域 ============ */
+#hero {
+    background: linear-gradient(135deg, #2E86AB 0%, #1B5A7A 40%, #D4A76A 100%);
+    color: #F5F5F5;
+    text-align: center;
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../images/hero-bg.jpg') center/cover no-repeat;
+    opacity: 0.25;
+}
+
+#hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+#hero h1 {
+    font-size: 52px;
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+    color: #F5F5F5;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+#hero p {
+    font-size: 20px;
+    color: #E8D5B7;
+    letter-spacing: 4px;
+}
+
+/* ============ 候鸟飞过动画（Hero区域） ============ */
+.birds-flying {
+    position: absolute;
+    top: 20%;
+    left: -100px;
+    font-size: 40px;
+    animation: flyAcross 15s linear infinite;
+    opacity: 0.8;
+    z-index: 2;
+}
+
+.birds-flying:nth-child(2) {
+    top: 35%;
+    animation-delay: 5s;
+    font-size: 30px;
+}
+
+.birds-flying:nth-child(3) {
+    top: 50%;
+    animation-delay: 10s;
+    font-size: 35px;
+}
+
+@keyframes flyAcross {
+    0% { left: -100px; opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { left: 110%; opacity: 0; }
+}
+
+/* ============ 卡片网格 ============ */
+#intro {
+    padding: 60px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    color: #2E86AB;
+    margin-bottom: 40px;
+    letter-spacing: 5px;
+    position: relative;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: #D4A76A;
+    margin: 15px auto 0;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: #2E3D34;
+    display: block;
+    border-top: 4px solid #2E86AB;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    border-top-color: #D4A76A;
+}
+
+.card-image {
+    width: 100%;
+    height: 220px;
+    background-color: #E8F0F4;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #2E86AB;
+}
+
+.card-content p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* ============ 特色展示区 ============ */
+#featured {
+    padding: 60px 0;
+    background-color: #fff;
+}
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    align-items: center;
+}
+
+.featured-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.featured-text h3 {
+    font-size: 28px;
+    color: #2E86AB;
+    margin-bottom: 20px;
+}
+
+.featured-text p {
+    color: #555;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.featured-text .highlight {
+    color: #D4A76A;
+    font-weight: bold;
+}
+
+/* ============ 数据统计区 ============ */
+#stats {
+    padding: 50px 0;
+    background: linear-gradient(135deg, #2E86AB, #1B5A7A);
+    color: #F5F5F5;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+}
+
+.stat-item .stat-number {
+    font-size: 48px;
+    font-weight: bold;
+    color: #D4A76A;
+}
+
+.stat-item .stat-label {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #E8D5B7;
+}
+
+/* ============ 按钮样式 ============ */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #D4A76A;
+    color: #2E3D34;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #C49550;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212,167,106,0.4);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid #D4A76A;
+    color: #F5F5F5;
+}
+
+.btn-outline:hover {
+    background-color: #D4A76A;
+    color: #2E3D34;
+}
+
+/* ============ 页脚 ============ */
+#footer {
+    background-color: #2E86AB;
+    color: #F5F5F5;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 60px;
+}
+
+#footer p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.copyright {
+    color: #E8D5B7;
+    font-size: 14px;
+}
+
+/* ============ 通用页面头部 ============ */
+.page-header {
+    background: linear-gradient(135deg, #2E86AB, #1B5A7A);
+    color: #F5F5F5;
+    text-align: center;
+    padding: 60px 0;
+    position: relative;
+}
+
+.page-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../images/page-header-bg.jpg') center/cover no-repeat;
+    opacity: 0.15;
+}
+
+.page-header .container {
+    position: relative;
+    z-index: 1;
+}
+
+.page-header h1 {
+    font-size: 36px;
+    letter-spacing: 5px;
+}
+
+.page-header p {
+    color: #E8D5B7;
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+
+/* ============ 内容页面布局 ============ */
+.content-section {
+    padding: 50px 0;
+}
+
+.content-section h2 {
+    font-size: 28px;
+    color: #2E86AB;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #D4A76A;
+    display: inline-block;
+}
+
+.content-section p {
+    margin-bottom: 20px;
+    text-indent: 2em;
+    font-size: 16px;
+    color: #444;
+}
+
+.content-section img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* ============ 候鸟种类卡片 ============ */
+.species-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.species-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.species-card:hover {
+    transform: translateY(-5px);
+}
+
+.species-image {
+    width: 200px;
+    min-height: 200px;
+    background-color: #E8F0F4;
+    flex-shrink: 0;
+}
+
+.species-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.species-info {
+    padding: 20px;
+    flex: 1;
+}
+
+.species-info h3 {
+    color: #2E86AB;
+    margin-bottom: 8px;
+}
+
+.species-info .tag {
+    display: inline-block;
+    background: #D4A76A;
+    color: #2E3D34;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+/* ============ 图片画廊 ============ */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.1);
+}
+
+/* ============ 视频容器 ============ */
+.video-container {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.video-container video {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+/* ============ 音频播放器 ============ */
+.audio-container {
+    margin: 30px 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    border-left: 4px solid #2E86AB;
+}
+
+.audio-container h3 {
+    margin-bottom: 15px;
+    color: #2E86AB;
+}
+
+.audio-container audio {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* ============ 表单样式 ============ */
+.form-container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    max-width: 700px;
+    margin: 0 auto;
+    border-top: 4px solid #2E86AB;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #2E86AB;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.required {
+    color: #D4A76A;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #2E86AB;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.error-message {
+    color: #C0392B;
+    font-size: 13px;
+    margin-top: 5px;
+    display: none;
+}
+
+.form-group.error input,
+.form-group.error textarea {
+    border-color: #C0392B;
+}
+
+.form-group.error .error-message {
+    display: block;
+}
+
+.form-group.success input,
+.form-group.success textarea {
+    border-color: #27AE60;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    background-color: #2E86AB;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    letter-spacing: 3px;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #D4A76A;
+    color: #2E3D34;
+}
+
+/* ============ 结果页面 ============ */
+.result-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.result-card .success-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.result-card h2 {
+    color: #2E86AB;
+    margin-bottom: 20px;
+}
+
+.result-info {
+    text-align: left;
+    background: #F0F6F9;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.result-info p {
+    margin: 10px 0;
+    font-size: 15px;
+}
+
+.result-info strong {
+    color: #2E86AB;
+}
+
+/* ============ 返回顶部按钮 ============ */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #2E86AB;
+    color: #F5F5F5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 99;
+}
+
+.back-to-top:hover {
+    background-color: #D4A76A;
+    transform: translateY(-3px);
+}
+
+/* ============ 面包屑导航 ============ */
+.breadcrumb {
+    background: #fff;
+    padding: 15px 0;
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.breadcrumb a {
+    color: #2E86AB;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: #D4A76A;
+}
+
+.breadcrumb span {
+    margin: 0 8px;
+    color: #999;
+}
+
+/* ============ 保护行动卡片 ============ */
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.action-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    border-bottom: 4px solid #2E86AB;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    border-bottom-color: #D4A76A;
+}
+
+.action-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.action-card h3 {
+    color: #2E86AB;
+    margin-bottom: 10px;
+}
+
+/* ============ 提示框 ============ */
+.tip-box {
+    background: #FFF9F0;
+    border: 1px solid #D4A76A;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.tip-box h3 {
+    color: #D4A76A;
+    margin-bottom: 10px;
+}
+
+.tip-box ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.tip-box ul li {
+    padding: 5px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.tip-box ul li::before {
+    content: "🪶";
+    position: absolute;
+    left: 0;
+}
+
+/* ============ 响应式（基础） ============ */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+    .species-grid {
+        grid-template-columns: 1fr;
+    }
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #main-nav ul {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}

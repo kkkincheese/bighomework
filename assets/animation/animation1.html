@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画展示 - 候鸟飞翔 - 鄱阳鹤影</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .animation-container {
+            background: #fff;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 天空背景 */
+        .sky {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(180deg, #87CEEB 0%, #E0F0FF 60%, #F5F5F5 100%);
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        /* 太阳 */
+        .sun {
+            position: absolute;
+            top: 30px;
+            right: 60px;
+            width: 60px;
+            height: 60px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 40px #FFD700;
+            animation: sunGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes sunGlow {
+            0%, 100% { box-shadow: 0 0 40px #FFD700; }
+            50% { box-shadow: 0 0 60px #FFA500; }
+        }
+
+        /* 云朵 */
+        .cloud {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: "";
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .cloud1 {
+            width: 120px;
+            height: 50px;
+            top: 60px;
+            left: -150px;
+            animation: cloudMove 20s linear infinite;
+        }
+        .cloud1::before {
+            width: 60px;
+            height: 40px;
+            top: -20px;
+            left: 20px;
+        }
+        .cloud1::after {
+            width: 80px;
+            height: 45px;
+            top: -15px;
+            left: 50px;
+        }
+
+        .cloud2 {
+            width: 100px;
+            height: 40px;
+            top: 120px;
+            left: -120px;
+            animation: cloudMove 25s linear infinite;
+            animation-delay: 8s;
+        }
+        .cloud2::before {
+            width: 50px;
+            height: 35px;
+            top: -18px;
+            left: 15px;
+        }
+        .cloud2::after {
+            width: 60px;
+            height: 38px;
+            top: -12px;
+            left: 40px;
+        }
+
+        @keyframes cloudMove {
+            from { left: -150px; }
+            to { left: 110%; }
+        }
+
+        /* 候鸟（CSS绘制） */
+        .bird {
+            position: absolute;
+            animation: birdFly 6s ease-in-out infinite;
+        }
+
+        /* 鸟身体 */
+        .bird-body {
+            width: 40px;
+            height: 15px;
+            background: #2E3D34;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .bird-body::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: 5px;
+            width: 12px;
+            height: 8px;
+            background: #D4A76A;
+            border-radius: 50%;
+        }
+
+        .bird-body::after {
+            content: "";
+            position: absolute;
+            top: 5px;
+            right: -3px;
+            width: 10px;
+            height: 5px;
+            background: #2E3D34;
+            border-radius: 50% 50% 0 0;
+        }
+
+        /* 翅膀 */
+        .wing {
+            position: absolute;
+            width: 30px;
+            height: 8px;
+            background: #2E3D34;
+            border-radius: 50%;
+            top: -2px;
+            transform-origin: right center;
+        }
+
+        .wing-left {
+            left: -25px;
+            animation: wingFlap 0.6s ease-in-out infinite;
+        }
+
+        .wing-right {
+            left: 35px;
+            animation: wingFlap 0.6s ease-in-out infinite;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes wingFlap {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(40deg); }
+        }
+
+        /* 白鹤（大鸟）特殊样式 */
+        .crane .bird-body {
+            background: #fff;
+            border: 2px solid #ddd;
+            width: 50px;
+            height: 18px;
+        }
+        .crane .wing {
+            background: #fff;
+            border: 1px solid #ddd;
+            width: 40px;
+            height: 10px;
+        }
+        .crane .wing-left { left: -35px; }
+        .crane .wing-right { left: 45px; }
+        .crane .bird-body::before { background: #C0392B; }
+
+        /* 候鸟飞行路径 */
+        @keyframes birdFly {
+            0% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(200px, -50px) scale(1.1); }
+            50% { transform: translate(400px, 0) scale(1); }
+            75% { transform: translate(600px, -30px) scale(0.9); }
+            100% { transform: translate(800px, 0) scale(1); }
+        }
+
+        /* V字形队列 */
+        .bird1 { top: 200px; left: 50px; animation-duration: 7s; }
+        .bird2 { top: 180px; left: 30px; animation-duration: 7s; animation-delay: 0.5s; }
+        .bird3 { top: 220px; left: 20px; animation-duration: 7s; animation-delay: 1s; }
+        .bird4 { top: 160px; left: 10px; animation-duration: 7s; animation-delay: 1.5s; }
+        .bird5 { top: 240px; left: 0px; animation-duration: 7s; animation-delay: 2s; }
+
+        .description {
+            margin-top: 30px;
+            color: #2E86AB;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <div class="container">
+            <div id="logo"><span id="logo-icon">🪶</span>鄱阳鹤影</div>
+            <div id="main-nav">
+                <ul>
+                    <li><a href="../../index.html">首页</a></li>
+                    <li><a href="../../pages/species.html">候鸟种类</a></li>
+                    <li><a href="animation1.html">动画一</a></li>
+                    <li><a href="animation2.html">动画二</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="../../index.html">首页</a><span>&gt;</span><strong>动画展示一：候鸟飞翔</strong>
+        </div>
+    </div>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>动画展示一</h1>
+            <p>候鸟V字形队列飞翔（CSS3动画 + 翅膀扇动）</p>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="container">
+            <div class="animation-container">
+                <div class="sky">
+                    <div class="sun"></div>
+                    <div class="cloud cloud1"></div>
+                    <div class="cloud cloud2"></div>
+                    
+                    <!-- V字形候鸟队列 -->
+                    <div class="bird bird1">
+                        <div class="bird-body">
+                            <div class="wing wing-left"></div>
+                            <div class="wing wing-right"></div>
+                        </div>
+                    </div>
+                    <div class="bird crane bird2">
+                        <div class="bird-body">
+                            <div class="wing wing-left"></div>
+                            <div class="wing wing-right"></div>
+                        </div>
+                    </div>
+                    <div class="bird bird3">
+                        <div class="bird-body">
+                            <div class="wing wing-left"></div>
+                            <div class="wing wing-right"></div>
+                        </div>
+                    </div>
+                    <div class="bird bird4">
+                        <div class="bird-body">
+                            <div class="wing wing-left"></div>
+                            <div class="wing wing-right"></div>
+                        </div>
+                    </div>
+                    <div class="bird bird5">
+                        <div class="bird-body">
+                            <div class="wing wing-left"></div>
+                            <div class="wing wing-right"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="description">技术说明：使用CSS3 @keyframes实现候鸟V字形编队飞行 + 翅膀扇动动画</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="container">
+            <p>&copy; 2025 鄱阳鹤影 - 鄱阳湖候鸟保护公益站</p>
+            <p class="copyright">学号：202526206128 | 姓名：陈玉青 | 江西师范大学人工智能学院</p>
+        </div>
+    </div>
+
+    <a href="#" class="back-to-top" title="返回顶部">&#8593;</a>
+
+</body>
+</html>
